@@ -54,4 +54,4 @@ def account_view():
 
     c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data,headers={"Content-Type": "application/json"})
 
-    return c.content
+    return jsonify(c.content)
