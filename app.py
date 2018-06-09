@@ -47,13 +47,11 @@ def account_view():
     
     data = {
         'currentClientTimestamp': int(time.time()),
-        'serverTimestamp': int(0),
-        'lastServerTimestamp': int(0)
+        'serverTimestamp': int(0)
         }
 
-    c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data)
+    data = json.dumps(data)
 
-    a = 1/0
-    raise
+    c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data,headers={"Content-Type": "application/json"})
 
-    return 'Ohnoes'
+    return c.content
