@@ -51,15 +51,9 @@ def account_view():
         'lastServerTimestamp': int(0)
         }
 
-
     c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data)
 
     a = 1/0
     raise
 
     return 'Ohnoes'
-
-
-    """
-    http://www.pythonforbeginners.com/requests/using-requests-in-python
-    """
