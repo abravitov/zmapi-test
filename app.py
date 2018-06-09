@@ -44,5 +44,5 @@ def token_view():
 def account_view():
 
     zm = OAuth2Session(client_id,token=session['oauth_token'])
-    c = zm.get('http://api.zenmoney.ru/v1/account?title=OPEN_FRTS').content
+    c = zm.get('http://api.zenmoney.ru/v1/account').content
     return c
