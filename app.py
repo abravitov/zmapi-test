@@ -1,6 +1,6 @@
 from flask import Flask, render_template, current_app, redirect, url_for, session, request, jsonify
 from requests_oauthlib import OAuth2Session
-import os
+import os, time, json
 
 app = Flask (__name__)
 
@@ -44,5 +44,22 @@ def token_view():
 def account_view():
 
     zm = OAuth2Session(client_id,token=session['oauth_token'])
-    c = zm.get('http://api.zenmoney.ru/v1/account').content
-    return c
+    
+    data = {
+        'currentClientTimestamp': int(time.time()),
+        'serverTimestamp': int(0),
+        'lastServerTimestamp': int(0)
+        }
+
+
+    c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data)
+
+    a = 1/0
+    raise
+
+    return 'Ohnoes'
+
+
+    """
+    http://www.pythonforbeginners.com/requests/using-requests-in-python
+    """
