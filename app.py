@@ -30,14 +30,13 @@ def callback():
 
     session['oauth_token'] = token
 
-    return redirect(url_for('token_view'))
+    return redirect(url_for('account_view'))
 
 @app.route('/zmview/', methods=['GET', 'POST'])
 def token_view():
 
     zm = OAuth2Session(client_id,token=session['oauth_token'])
     s = session['oauth_token']
-    c = zm.get('http://api.zenmoney.ru/v1/account?title=OPEN_FRTS').content
     return jsonify(s)
 
 @app.route('/acc/', methods=['GET', 'POST'])
@@ -50,8 +49,14 @@ def account_view():
         'serverTimestamp': int(0)
         }
 
-    data = json.dumps(data)
+    data = json.dumps(data) # Необходимая конвертация для API
 
     c = zm.post("https://api.zenmoney.ru/v8/diff/",data=data,headers={"Content-Type": "application/json"})
 
-    return jsonify(c.content)
+    json_dump = json.loads(c.content)
+
+    with open('zmpdump.json', 'w+') as f:
+        json.dump(json_dump, f, ensure_ascii=False)
+        f.close()
+
+    return "The data has been updated"
