@@ -22,4 +22,4 @@ export FLASK_APP=app.py
 
 ## Запуск приложения
 
-`flask run`
+`flask run --host localhost`
