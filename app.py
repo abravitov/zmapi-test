@@ -6,8 +6,8 @@ app = Flask (__name__)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-client_id = 'g105e5bab2115ec5a3de1b7fe6dacb'
-client_secret = 'c9e172ded0'
+client_id = '************'
+client_secret = '**********'
 authorization_base_url = "https://api.zenmoney.ru/oauth2/authorize/"
 token_url = "https://api.zenmoney.ru/oauth2/token/"
 redirect_uri = 'http://localhost:5000/callback'
